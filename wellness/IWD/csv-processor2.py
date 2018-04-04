@@ -23,9 +23,27 @@ def filterCSV(filename):
             osis = row[2].title()
             for i in range(4, len(row)):
                 if row[i] in teachers:
-                    teacher = row[i]
-                    entry = name + " -- " + osis + "; Timestamp: " + timestamp
-                    teachers[teacher].append(entry)
+                    if row[i] == "Garber":
+                        teacher = row[i]
+                        entry = name + " -- " + osis + "; Timestamp: " + timestamp
+                        teachers[teacher].append(entry)
+                    else:
+                        teacher = row[i]
+                        entry = name + " -- " + osis
+                        teacher = teachers[teacher] #convert teacher into its constituent array
+                        if len(teacher) == 0:
+                            teacher.append(entry)
+                        else:
+                            safe = True
+                            #remove dupes
+                            for i in teacher:
+                                if entry == i:
+                                    safe = False
+                            if safe:
+                                teacher.append(entry)
+
+                        #print i
+
         #print teachers["Garber"]
 
 def makeCSV():
