@@ -20,10 +20,12 @@ def filterCSV(filename):
         for row in readCSV:
             name = row[1].title()
             timestamp = row[0].title() #adds when the people went
+            osis = row[2].title()
             for i in range(4, len(row)):
                 if row[i] in teachers:
                     teacher = row[i]
-                    teachers[teacher].append(name + " -- " + timestamp)
+                    entry = name + " -- " + osis + "; Timestamp: " + timestamp
+                    teachers[teacher].append(entry)
         #print teachers["Garber"]
 
 def makeCSV():
